@@ -14,7 +14,7 @@ Setup and launch
 <ul>
     <li>make sure you have installed a c++ compiler and Eigen library</li>
     <li>navigate to project directory</li>
-    <li>compile main.cpp with youf compiler and include Eigen library during compilation</li>
+    <li>compile main.cpp with your compiler and include Eigen library during compilation</li>
     <li>excecute created  .exe file</li>
     <li>enter expected precision</li>
 </ul>
