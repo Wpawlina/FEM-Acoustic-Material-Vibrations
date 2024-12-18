@@ -1,5 +1,4 @@
-Finite-Element-Method-for-Differential-and-Difference-Equations
-Implementation and Analysis of Finite Element Method for Differential and Difference Equations of Acoustic Material Vibrations
+Finite Element Method for Differential and Difference Equations
 ================================================
 
 Algorithm solves differential equation with boundary conditions using finite element method. It finds Equation of Acoustic Material Vibrations with provided by the user precision. 
