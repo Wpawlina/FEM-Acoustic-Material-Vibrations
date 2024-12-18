@@ -18,7 +18,7 @@ Setup and launch
     <li>excecute created  .exe file</li>
     <li>enter expected precision</li>
 </ul>
-Results will be save in data.txt file.
+Results will be saved in data.txt file.
 
 
 
