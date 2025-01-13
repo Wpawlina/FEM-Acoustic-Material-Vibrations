@@ -15,7 +15,7 @@ Setup and launch
     <li>make sure you have installed a c++ compiler and Eigen library</li>
     <li>navigate to project directory</li>
     <li>compile main.cpp with your compiler and include Eigen library during compilation</li>
-    <li>execute created  .exe file</li>
+    <li>excecute created  .exe file</li>
     <li>enter expected precision</li>
 </ul>
 Results will be saved in data.csv file.
