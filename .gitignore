@@ -1,4 +1,5 @@
 .vscode/
 *.exe
 *.txt
+*.csv
 eigen-3.4.0/

@@ -2,6 +2,7 @@
 #include <functional>
 #include <cmath>
 #include <Eigen/Dense> 
+#include <Eigen/Sparse>
 #include <fstream>
 
 
@@ -105,19 +106,42 @@ int main(){
     h=(double)L/ (double)n;
 
 
-    MatrixXd A(n,n);
+    SparseMatrix<double> A(n,n);
     VectorXd B(n);
+
+    vector<Triplet<double>> triplets;
 
     for(int j=0;j<n;j++){
         for(int i=0;i<n;i++){
-            A(j,i)=B_i_j(i+1,j+1);
+            double value=B_i_j(i+1,j+1);
+            if(value!=0.0){
+                triplets.emplace_back(j,i,value);
+            }
         }
         B(j)=L_j(j+1);
     }
 
+    A.setFromTriplets(triplets.begin(),triplets.end());
 
-    VectorXd X = A.colPivHouseholderQr().solve(B);
+    SparseLU<SparseMatrix<double>> solver;
+
+    solver.compute(A);
+    if(solver.info()!=Success){
+        cout<<"Error"<<endl;
+        return 1;
+    }
+
+    VectorXd X = solver.solve(B);
+    if(solver.info()!=Success){
+        cout<<"Error"<<endl;
+        return 1;
+    }
+
+
     VectorXd X_u(n+1);
+
+
+  
      
     X_u(0)=0;
     for(int i=0;i<n;i++){
@@ -138,9 +162,9 @@ int main(){
     
     fstream file;
 
-    file.open("data.txt",ios::out);
+    file.open("data.csv",ios::out);
     for(int i=0;i<n+1;i++){
-        file<<x[i]<<" "<<y[i]<<endl;
+        file<<x[i]<<";"<<y[i]<<endl;
        
     }
 
