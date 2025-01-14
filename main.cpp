@@ -22,8 +22,8 @@ double rescale(double x, double a, double b) {
 }
 
 double integral(function<double(double)>f,double a, double b){
-    double nodes[2] = {-0.57735, 0.57735 };
-    double weights[2] = {1, 1};
+    double nodes[5] = {0, 0.538469, -0.538469, 0.90618, -0.90618};
+    double weights[5] = {0.568889, 0.478629, 0.478629, 0.236927, 0.236927};
     double integral = 0;
     
     for (int i = 0; i < 2; i++) {
