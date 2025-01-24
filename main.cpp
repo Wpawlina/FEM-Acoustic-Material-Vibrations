@@ -4,6 +4,7 @@
 #include <Eigen/Dense> 
 #include <Eigen/Sparse>
 #include <fstream>
+#include <cmath>
 
 
 
@@ -26,11 +27,11 @@ double integral(function<double(double)>f,double a, double b){
     double weights[5] = {0.568889, 0.478629, 0.478629, 0.236927, 0.236927};
     double integral = 0;
     
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 5; i++) {
         integral += weights[i] * f(rescale(nodes[i], a, b));
     }
     
-    return integral;  
+    return integral*(b-a)/2;  
 }
 
 
@@ -59,37 +60,18 @@ double e_i_d(int i, double x){
 double B_i_j(int i ,int j){
     double a=0;
     double b=0;
-    if( i == j-1)
-    {
-        a=i*h;
-        b=(i+1)*h;
-    }
-    else if(i == j+1)
-    {
-        a=(i-1)*h;
-        b=i*h;
-    }
-    else if(i ==n )
-    {
-        a=(i-1)*h;
-        b=i*h;
-    }
-    else
-    {
-        a=(i-1)*h;
-        b=(i+1)*h;
-    }
-
-  return (-1)*e_i(i,2)*e_i(j,2)+integral([i,j]( double x){return e_i_d(i,x) *e_i_d(j,x);},a,b)-integral([i,j](double x){ return e_i(i,x)*e_i(j,x);},a,b);
+    a=min(i,j)*h;
+    b=max(i,j)*h;
+    return (-1)*e_i(i,2)*e_i(j,2)+integral([i,j]( double x){return e_i_d(i,x) *e_i_d(j,x);},a,b)-integral([i,j](double x){ return e_i(i,x)*e_i(j,x);},a,b);
 }
 
 double L_j(int j){
     
-    auto sin1=[](double x){return sin(x);};
+    auto sin1=[j](double x){return e_i(j,x)*sin(x);};
     double a=(j-1)*h;
     double b=(j+1)*h;
 
-    return integral(sin1,a,b)-integral([j](double x){return e_i_d(j,x)*e_i_d(0,x);},a,b)+integral([j](double x){return e_i(j,x)*e_i(0,x);},a,b)+4*e_i(j,2);
+    return integral(sin1,a,b)-integral([j](double x){return e_i_d(j,x)*e_i_d(0,x);},a,b)+integral([j](double x){return e_i(j,x)*e_i(0,x);},a,b)+4*e_i(j,2)+e_i(0,2)*e_i(j,2);
 }
 
 
