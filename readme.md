@@ -8,11 +8,12 @@ It was a part of AGH UST Differential and Difference Equations subject.
 Technologies used
 ================================================
 C++ - Eigen for matrix calculations
+Python - Pandas and Matplotlib for plots genration
 
 Setup and launch
 ================================================
 <ul>
-    <li>make sure you have installed a c++ compiler and Eigen library</li>
+    <li>make sure you have installed a C++ compiler and Eigen library, Python with Pandas, Matplotlib </li>
     <li>navigate to project directory</li>
     <li>compile main.cpp with your compiler and include Eigen library during compilation</li>
     <li>excecute created  .exe file</li>
