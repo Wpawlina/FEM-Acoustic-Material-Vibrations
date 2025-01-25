@@ -7,7 +7,7 @@ It was a part of AGH UST Differential and Difference Equations subject.
 
 Technologies used
 ================================================
-C++ - Eigen for matrix calculations
+C++ - Eigen for matrix calculations<br/>
 Python - Pandas and Matplotlib for plots genration
 
 Setup and launch
